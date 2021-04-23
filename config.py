@@ -25,3 +25,6 @@ class DevConfig(Config):
     '''
 
     DEBUG = True
+
+
+export SECRET_KEY = 'd7b1a25b72b817d78afffe763942756b42b01564'
