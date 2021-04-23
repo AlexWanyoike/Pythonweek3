@@ -1,0 +1,9 @@
+{% extends "base.html" %} 
+
+{% block content %} 
+    {% for post in posts %}
+    <h1>{{ post.author}}</h1>
+    <h2>{{ post.name}}</h2>
+    {% endfor %}
+{% endblock content %}
+

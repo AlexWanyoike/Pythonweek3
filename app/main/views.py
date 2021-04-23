@@ -1,8 +1,17 @@
-from flask import  Flask , render_template
+from flask import  Flask , render_template , url_for
 app = Flask(__name__)
 from app import app
 
-
+posts = [
+    {
+        'author': 'David',
+        'name': 'human'
+    },
+    {
+        'author': 'Agg',
+        'name': 'human2'
+    }
+]
 
 
 
@@ -10,13 +19,10 @@ from app import app
 @app.route('/')
 @app.route('/home')
 def index():
-
     '''
     View root page function that returns the index page and its data
-    '''
-
-    
-    return render_template('base.html',title = 'Home')
+    '''  
+    return render_template('home.html',posts = posts)
 
 @app.route('/about')
 def about():
