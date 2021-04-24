@@ -1,8 +1,8 @@
-
 from flask import Flask, render_template, url_for, flash, redirect
 from app import app
 from app.forms import RegistrationForm, LoginForm
 from app.models import User , Post
+
 #Havent installed the import db
 #Sent email to retriev the information
 #db.create_all
