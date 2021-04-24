@@ -1,5 +1,5 @@
 from datetime import datetime
-from ..views import db
+from __main__ import db
 #No DB Import Created
 
 

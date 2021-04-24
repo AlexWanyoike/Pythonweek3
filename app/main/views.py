@@ -1,15 +1,9 @@
+
 from flask import Flask, render_template, url_for, flash, redirect
-from flask_sqlalchemy import SQLAlchemy
+from app import app
 from .forms import RegistrationForm, LoginForm
 from ..models import User, Post
-
-app = Flask(__name__)
-from app import app , db , create_app
-from app.models import User
-app.config['SECRET_KEY'] = 'd7b1a25b72b817d78afffe763942756b42b01564'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-db = SQLAlchemy(app)
- 
+from main.models import User , Post
 #Havent installed the import db
 #Sent email to retriev the information
 #db.create_all
