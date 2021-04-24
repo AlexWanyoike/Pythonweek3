@@ -1,13 +1,46 @@
 from flask import Flask, render_template, url_for, flash, redirect
+from flask_sqlalchemy import SQLAlchemy
 from .forms import RegistrationForm, LoginForm
- 
+from ..models import User, Post
+
 app = Flask(__name__)
-from app import app
- 
+from app import app , db , create_app
+from app.models import User
 app.config['SECRET_KEY'] = 'd7b1a25b72b817d78afffe763942756b42b01564'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+db = SQLAlchemy(app)
  
- 
- 
+#Havent installed the import db
+#Sent email to retriev the information
+#db.create_all
+# site.db file not created
+# from views import User, Post
+# user_1 = user(username='Alex', email='x.com', password =''password) 
+#db.session.add(user_1)
+#user_2 = user(username='Alex1', email='x1.com', password =''1password) 
+#db.session.add(user_2)
+#db.session.commit()
+#User.query.all() ---> All users
+#User.query.first() 
+#User.query.filter_by(username=''Alex).all() ---All username with the name Alex
+#user = User.query.filter_by(username=''Alex).first()
+#user = User.query.get(1) -->User I
+#user.posts --> To kno the posts gotten
+#post_1 = Post(title = 'Blog', content = 'First POst Content!' , user_id= user.id)
+#post_2 = Post(title = 'Blog1', content = 'First POst Content2!' , user_id= user.id)
+#db.session.add(post_1)
+#db.session.add(user_2)
+#db.session.commit()
+#user.posts
+# post = Post.query.first() ---> #>post
+#post.user_id
+# post.author --->get all the user information
+
+
+
+
+
+
  
 posts = [
    {
