@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, flash, redirect
 from app import app
 from app.forms import RegistrationForm, LoginForm
 from app.models import User , Post
+from . import Auth , auth
 
 #Havent installed the import db
 #Sent email to retriev the information
@@ -49,7 +50,7 @@ posts = [
  
  
 # Views
-@app.route('/')
+@apply().route('/')
 @app.route('/home')
 def index():
    '''
@@ -87,3 +88,7 @@ def login():
        else:
            flash('Login Unsuccessful. Please check username and password', 'danger')
    return render_template('login.html', title='Login', form=form)
+
+#@auth.route('/login')
+#def login():
+ #   return render_template('auth/login.html')

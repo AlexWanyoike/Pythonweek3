@@ -1,7 +1,11 @@
 class Config:
     '''
     General configuration parent class
+
+
     '''
+    SECRET_KEY = 'd7b1a25b72b817d78afffe763942756b42b01564'
+
     pass
 
 
@@ -27,4 +31,7 @@ class DevConfig(Config):
     DEBUG = True
 
 
-export SECRET_KEY = 'd7b1a25b72b817d78afffe763942756b42b01564'
+config_options = {
+'development': DevConfig,
+'production': ProdConfig
+}
