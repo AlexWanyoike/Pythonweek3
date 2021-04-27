@@ -1,0 +1,21 @@
+{% macro display(category_list)%}
+<div class="row">
+    {%if category_list%}
+    {%for category in category_list%}
+    <div class="col-md-3">
+        <div class="card" style="width: 17.5rem; margin-left: 120px;" id="card-info">
+            <div class="card-body">
+                <h3 class="card-title">{{category.title}}</h3>
+                <h5 class="card-subtitle mb-2 ">{{category.category}}</h5>
+                <p class="card-text"> {{category.description}} </p>
+                <p class="card-text text-muted"><b>~ {{category.user.username}}</b> </p>
+                <a href="{{url_for('main.new_comment',pitch_id=category.id)}}"><button class="btn btn-primary">comment</button></a>
+            </div>
+        </div>
+        <br>
+    </div>
+    {%endfor%}
+    {%else%}
+    {%endif%}
+</div>
+{% endmacro %}
