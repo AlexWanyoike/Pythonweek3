@@ -5,21 +5,24 @@ from flask import Blueprint
 #from .auth import auth as auth_blueprint
 
 #app.register_blueprint(auth_blueprint,url_prefix = '/authenticate')
-db = SQLAlchemy()
+
 
 def create_app(config_name):
-    app = Flask(__name__)
-    bootstrap.init_app(app)
+    app = Flask(__name__, instance_relative_config= True)
+    
+    #bootstrap.init_app(app)
 
     
     
     return app
 
-auth = Blueprint('auth',__name__)
-
 #app.config['SECRET_KEY'] = 'd7b1a25b72b817d78afffe763942756b42b01564'
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 #db.init_app(app)
+
+auth = Blueprint('auth',__name__)
+
+
 
 #
 #from config import Config
