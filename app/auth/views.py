@@ -6,26 +6,18 @@ from .. import db
 from flask_login import login_user,logout_user,login_required
 from ..email import mail_message
 
-@auth.route('/login', methods=['GET', 'POST'])
+@auth.route('/login',methods=['GET','POST'])
 def login():
     login_form = LoginForm()
-    if request.method == 'POST':
-        form = request.form
-        username = form.get('username')
-        password = form.get('password')
-        print(username)
-        user = User.query.filter_by(username=username).first()
-        if user is None:
-            error = 'A user with that username  does not exist'
-            return render_template('login.html', error=error)
-        is_correct_password = user.check_password(password)
-        print(is_correct_password)
-        if not is_correct_password:
-            error = 'A user with that password does not exist'
-            return render_template('login.html', error=error)
-        login_user(user)
-        return redirect('/')
-    return render_template('auth/login.html')
+    if login_form.validate_on_submit():
+        user = User.query.filter_by(email = login_form.email.data).first()
+        if user is not None and user.verify_password(login_form.password.data):
+            login_user(user,login_form.remember.data)
+            return redirect(request.args.get('next') or url_for('main.index'))
+
+        flash('Invalid username or Password')
+        
+    title = "Login"
 
 
 @auth.route('/signup', methods=['GET', 'POST'])
