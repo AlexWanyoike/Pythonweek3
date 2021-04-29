@@ -53,10 +53,7 @@
                 <a class="nav-link" href="/pitches/new/"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                   Create Pitch</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{url_for('auth.logout')}}"> <i class="fa fa-power-off"
-                    aria-hidden="true"></i> Sign Out</a>
-              </li>
+              
             </ul>
           </div>
           {% else %}
@@ -64,8 +61,9 @@
             <li class="nav-item active">
               <a class="nav-link" href="{{url_for('auth.login')}}">Login</a>
             </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="{{url_for('auth.register')}}">Sign Up</a>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('auth.logout')}}"> <i class="fa fa-power-off"
+                  aria-hidden="true"></i> Sign Out</a>
             </li>
           </ul>
           {% endif %}

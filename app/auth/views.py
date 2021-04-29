@@ -8,6 +8,7 @@ from ..email import mail_message
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
+    login_form = LoginForm()
     if request.method == 'POST':
         form = request.form
         username = form.get('username')
@@ -24,7 +25,7 @@ def login():
             return render_template('login.html', error=error)
         login_user(user)
         return redirect('/')
-    return render_template('login.html')
+    return render_template('auth/login.html')
 
 
 @auth.route('/signup', methods=['GET', 'POST'])
