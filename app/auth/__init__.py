@@ -2,6 +2,6 @@ from flask import Blueprint
 
 auth = Blueprint('auth',__name__)
 
-# from . import views
+from . import *
 from .views import *
 from . import forms

@@ -1,11 +1,13 @@
 from app import create_app,db
-from app.models import *
+from app.models import User
 
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager,Shell,Server
 
 # Creating app instance
 app = create_app('development')
+app = create_app('production')
+app = create_app('test')
 
 manager = Manager(app)
 migrate = Migrate(app,db)
