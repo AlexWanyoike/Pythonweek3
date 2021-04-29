@@ -18,43 +18,25 @@ def login():
         flash('Invalid username or Password')
         
     title = "Login"
+    return render_template('auth/login.html',login_form = login_form,title=title)
 
+@auth.route('/register',methods = ["GET","POST"])
+def register():
+    registration_form = RegistrationForm()
+    if registration_form.validate_on_submit():
+        user = User(email = registration_form.email.data, username = registration_form.username.data,password = registration_form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        
+        mail_message("Welcome to Simple Pitch","email/welcome_user",user.email,user=user)
 
-@auth.route('/signup', methods=['GET', 'POST'])
-def signup():
-    if request.method == 'POST':
-        form = request.form
-        username = form.get("username")
-        email = form.get("email")
-        password = form.get("password")
-        confirm_password = form.get("confirm_password")
-        if username is None or password is None or email is None or confirm_password is None:
-            error = 'username, email, password are required'
-            return render_template('signup.html', error=error)
-        if ' ' in username:
-            error = 'Username should not contain spaces'
-            return render_template('signup.html', error=error)
-        if password != confirm_password:
-            error = "Passwords do not match"
-            return render_template('signup.html', error=error)
-        else:
-            user = User.query.filter_by(username=username).first()
-            if user is not None:
-                error = 'A user with that name already exists'
-                return render_template('signup.html', error=error)
-            user = User.query.filter_by(email=email).first()
-            if user is not None:
-                error = 'A user with that email already exists'
-                return render_template('signup.html', error=error)
-            user = User(username=username, email=email)
-            user.set_password(password)
-            user.save()
-            return redirect(url_for('auth.login'))
-
-    return render_template('register.html')
+        return redirect(url_for('auth.login'))
+        
+    return render_template('auth/register.html', registration_form = registration_form )
 
 
 @auth.route('/logout')
+@login_required
 def logout():
     logout_user()
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('main.index'))

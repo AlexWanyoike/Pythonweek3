@@ -27,7 +27,7 @@ def new_pitch():
         title = form.title.data
         owner_id = current_user
         category = form.category.data
-        new_pitch = Pitch(owner_id =current_user._get_current_object().id, title = title,description=description,category=category)
+        new_pitch = Pitch(user_id =current_user._get_current_object().id, title = title,description=description,category=category)
         db.session.add(new_pitch)
         db.session.commit()
 
